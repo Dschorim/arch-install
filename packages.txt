@@ -13,6 +13,7 @@ mtools
 dosfstools
 reflector
 git
+wget
 
 # additional packages
 xdg-utils
