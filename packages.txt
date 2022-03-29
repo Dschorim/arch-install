@@ -1,0 +1,37 @@
+# essential packages
+grub
+grub-btrfs
+efibootmgr
+base-devel
+linux-headers
+networkmanager
+network-manager-applet
+wpa_supplicant
+dialog
+os-prober
+mtools
+dosfstools
+reflector
+git
+
+# additional packages
+xdg-utils
+xdg-user-dirs
+
+# cat but with syntax highlighting
+bat
+
+# find in rust
+fd
+
+# sway packages
+sway
+swayidle
+swaylock
+
+#default applications of sway
+dmenu
+foot
+
+# terminal emulator
+alacritty
