@@ -8,4 +8,5 @@ makepkg -si
 cd ..
 
 # copy over default sway config
+mkdir -p ~/.config/sway
 cp /etc/sway/config ~/.config/sway/config
