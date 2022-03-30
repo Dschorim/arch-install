@@ -10,7 +10,7 @@ read EFI_PARTITION
 
 echo "Do you want to format the EFI partition? (Y/n)"
 read FORMAT_EFI
-FORMAT_EFI = ${FORMAT_EFI:-y}
+$FORMAT_EFI = ${FORMAT_EFI:-y}
 
 if [ "$FORMAT_EFI" = "y" ]; then
     echo "Formatting EFI partition..."
