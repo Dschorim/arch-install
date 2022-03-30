@@ -15,7 +15,7 @@ FORMAT_EFI = "${FORMAT_EFI:-y}"
 if [ "$FORMAT_EFI" = "y" ]; then
     echo "Formatting EFI partition..."
     mkfs.fat -F32 $EFI_PARTITION
-fi else
+else
     echo "Skipping EFI partition formatting..."
 fi
 
@@ -25,7 +25,7 @@ read SWAP_PARTITION
 if [ "$SWAP_PARTITION" != "" ]; then
     mkswap $SWAP_PARTITION
     swapon $SWAP_PARTITION
-fi else 
+else 
     echo "Skipping swap creation..."
 fi
 
@@ -35,7 +35,7 @@ read ROOT_PARTITION
 if [ "$ROOT_PARTITION" != "" ]; then
     echo "Formatting root partition..."
     mkfs.btrfs $ROOT_PARTITION
-fi else
+else
     echo "No root partition specified. Exiting..."
     exit 1
 fi
