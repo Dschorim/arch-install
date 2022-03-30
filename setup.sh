@@ -51,12 +51,12 @@ btrfs su cr /mnt/@.snapshots
 umount /mnt
 
 echo "Mounting subvolumes..."
-mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@ $ROOT_PARTITION /mnt
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@ $ROOT_PARTITION /mnt
 mkdir /mnt/{boot,home,var,opt,tmp,.snapshots}
-mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@home $ROOT_PARTITION /mnt/home
-mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@opt $ROOT_PARTITION /mnt/opt
-mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@tmp $ROOT_PARTITION /mnt/tmp
-mount -o noatime,commit=120,compress=zstd,space_cache,subvol=@.snapshots $ROOT_PARTITION /mnt/.snapshots
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@home $ROOT_PARTITION /mnt/home
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@opt $ROOT_PARTITION /mnt/opt
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@tmp $ROOT_PARTITION /mnt/tmp
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@.snapshots $ROOT_PARTITION /mnt/.snapshots
 mount -o subvol=@var $ROOT_PARTITION /mnt/var
 mount $EFI_PARTITION /mnt/boot
 
