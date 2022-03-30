@@ -44,3 +44,6 @@ echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 systemctl enable NetworkManager
 
 bash ./custom-progs.sh
+
+# copy over default sway config
+cp /etc/sway/config /home/$username/.config/sway/config

@@ -25,6 +25,9 @@ bat
 # find in rust
 fd
 
+# ls replacement
+exa
+
 # sway packages
 sway
 swayidle
@@ -32,7 +35,6 @@ swaylock
 
 #default applications of sway
 dmenu
-foot
 
 # terminal emulator
 alacritty
