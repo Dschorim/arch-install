@@ -33,7 +33,7 @@ read ROOT_PARTITION
 
 if [ "$ROOT_PARTITION" != "" ]; then
     echo "Formatting root partition..."
-    mkfs.btrfs $ROOT_PARTITION
+    mkfs.btrfs -f $ROOT_PARTITION
 else
     echo "No root partition specified. Exiting..."
     exit 1
