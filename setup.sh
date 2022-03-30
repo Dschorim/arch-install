@@ -10,13 +10,12 @@ read EFI_PARTITION
 
 echo "Do you want to format the EFI partition? (Y/n)"
 read FORMAT_EFI
-FORMAT_EFI = "${FORMAT_EFI:-y}"
 
-if [ "$FORMAT_EFI" = "y" ]; then
+if [ "$FORMAT_EFI" = "n" ]; then
+    echo "Skipping EFI partition formatting..."
+else
     echo "Formatting EFI partition..."
     mkfs.fat -F32 $EFI_PARTITION
-else
-    echo "Skipping EFI partition formatting..."
 fi
 
 echo "Please enter the swap partition name (e.g. /dev/sda2). Leave blank for none:"
