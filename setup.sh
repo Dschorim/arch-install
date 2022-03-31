@@ -12,7 +12,7 @@ re='^[0-9]+$'
 if [ "$EFI_PARTITION" = "" ]; then
     EFI_PARTITION="/dev/sda1"
 fi
-if [[ $EFI_PARTITION =~ $re]]; then
+if [ $EFI_PARTITION =~ $re]; then
     EFI_PARTITION="/dev/sda$EFI_PARTITION"
 fi
 
