@@ -28,10 +28,6 @@ fi
 echo "Please enter the swap partition name (e.g. /dev/sda2). Leave blank for none:"
 read SWAP_PARTITION
 
-if [[ "$SWAP_PARTITION" =~ "^[0-9]+$"]]; then
-    SWAP_PARTITION="/dev/sda$SWAP_PARTITION"
-fi
-
 if [ "$SWAP_PARTITION" != "" ]; then
     mkswap $SWAP_PARTITION
     swapon $SWAP_PARTITION
