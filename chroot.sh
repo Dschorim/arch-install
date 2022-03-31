@@ -15,7 +15,7 @@ echo "$hostname" > /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1 localhost" >> /etc/hosts
 
-pacman -S "$(grep -v '^#' packages.txt)"
+pacman -S $(grep -v '^#' packages.txt)
 
 sed -i 's/Modules=()/Modules=(btrfs)/' /etc/mkinitcpio.conf
 
