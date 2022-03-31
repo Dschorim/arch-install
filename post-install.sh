@@ -10,3 +10,6 @@ cd ..
 # copy over default sway config
 mkdir -p ~/.config/sway
 cp /etc/sway/config ~/.config/sway/config
+
+echo "alias ll='ls -la'" >> ~/.bashrc
+echo "alias sway='WLR_NO_HARDWARE_CURSORS=1 sway'" >> ~/.bashrc

@@ -38,3 +38,7 @@ dmenu
 
 # terminal emulator
 alacritty
+foot
+
+# x11 compatibility
+xorg-server-xwayland
