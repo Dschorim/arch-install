@@ -8,7 +8,7 @@ fi
 echo "Please enter the EFI partition name (e.g. /dev/sda1):"
 read EFI_PARTITION
 
-re = '^[0-9]+$'
+re='^[0-9]+$'
 if [ "$EFI_PARTITION" = "" ]; then
     EFI_PARTITION="/dev/sda1"
 fi
