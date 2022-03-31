@@ -11,7 +11,7 @@ read EFI_PARTITION
 
 if [ "$EFI_PARTITION" = "" ]; then
     EFI_PARTITION="/dev/sda1"
-elif [[ "$EFI_PARTITION" =~ "^[0-9]+$"]]; then
+elif [ "$EFI_PARTITION" =~ "^[0-9]+$"]; then
     EFI_PARTITION="/dev/sda$EFI_PARTITION"
 fi
 
