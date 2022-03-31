@@ -5,19 +5,16 @@ if [ ! -d "/sys/firmware/efi/efivars" ]; then
   exit 1
 fi
 
-echo "Please enter the EFI partition name (e.g. /dev/sda1):"
-read EFI_PARTITION
+read -r -p "Please enter the EFI partition name (e.g. /dev/sda1): " EFI_PARTITION
 
 re='^[0-9]+$'
 if [ "$EFI_PARTITION" = "" ]; then
     EFI_PARTITION="/dev/sda1"
-fi
-if [ $EFI_PARTITION =~ $re]; then
+elif [[ $EFI_PARTITION =~ $re ]]; then
     EFI_PARTITION="/dev/sda$EFI_PARTITION"
 fi
 
-echo "Do you want to format the EFI partition? (Y/n)"
-read FORMAT_EFI
+read -r -p "Do you want to format the EFI partition? (Y/n): " FORMAT_EFI
 
 if [ "$FORMAT_EFI" = "n" ]; then
     echo "Skipping EFI partition formatting..."
@@ -26,26 +23,24 @@ else
     mkfs.fat -F32 $EFI_PARTITION
 fi
 
-echo "Please enter the swap partition name (e.g. /dev/sda2). Leave blank for none:"
-read SWAP_PARTITION
+read -r -p "Please enter the swap partition name (e.g. /dev/sda2). Leave blank for none: " SWAP_PARTITION
 
-if [ "$SWAP_PARTITION" =~ "^[0-9]+$"]; then
+if [[ $SWAP_PARTITION =~ $re ]]; then
     SWAP_PARTITION="/dev/sda$SWAP_PARTITION"
 fi
 
 if [ "$SWAP_PARTITION" != "" ]; then
-    mkswap $SWAP_PARTITION
-    swapon $SWAP_PARTITION
+    mkswap "$SWAP_PARTITION"
+    swapon "$SWAP_PARTITION"
 else 
     echo "Skipping swap creation..."
 fi
 
-echo "Please enter the root partition name (e.g. /dev/sda3):"
-read ROOT_PARTITION
+read -r -p "Please enter the root partition name (e.g. /dev/sda3): " ROOT_PARTITION
 
 if [ "$ROOT_PARTITION" = "" ]; then
     ROOT_PARTITION="/dev/sda3"
-elif [ "$ROOT_PARTITION" =~ "^[0-9]+$"]; then
+elif [[ $ROOT_PARTITION =~ $re ]]; then
     ROOT_PARTITION="/dev/sda$ROOT_PARTITION"
 fi
 
@@ -77,8 +72,7 @@ mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@.snapshots $ROO
 mount -o subvol=@var $ROOT_PARTITION /mnt/var
 mount $EFI_PARTITION /mnt/boot
 
-echo "Which CPU are you using? (intel/AMD/VM)"
-read CPU_TYPE
+read -r -p "Which CPU are you using? (intel/AMD/VM) " CPU_TYPE
 echo "Installing base system..."
 if [ "$CPU_TYPE" = "intel" ]; then
     pacstrap /mnt base linux linux-firmware nano intel-ucode btrfs-progs
