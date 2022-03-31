@@ -3,10 +3,17 @@
 if [ ! -d "/sys/firmware/efi/efivars" ]; then
   echo "System not booted in UEFI mode"
   exit 1
-fi 
+fi
 
 echo "Please enter the EFI partition name (e.g. /dev/sda1):"
 read EFI_PARTITION
+
+
+if [ "$EFI_PARTITION" = "" ]; then
+    EFI_PARTITION="/dev/sda1"
+else if [[ $EFI_PARTITION =~ ^[0-9]+$]]; then
+    EFI_PARTITION="/dev/sda$EFI_PARTITION"
+fi
 
 echo "Do you want to format the EFI partition? (Y/n)"
 read FORMAT_EFI
@@ -14,12 +21,18 @@ read FORMAT_EFI
 if [ "$FORMAT_EFI" = "n" ]; then
     echo "Skipping EFI partition formatting..."
 else
-    echo "Formatting EFI partition..."
+    echo "Formatting EFI partition $EFI_PARTITION..."
     mkfs.fat -F32 $EFI_PARTITION
 fi
 
 echo "Please enter the swap partition name (e.g. /dev/sda2). Leave blank for none:"
 read SWAP_PARTITION
+
+if [ "$SWAP_PARTITION" = "" ]; then
+    SWAP_PARTITION="/dev/sda2"
+else if [[ $SWAP_PARTITION =~ ^[0-9]+$]]; then
+    SWAP_PARTITION="/dev/sda$SWAP_PARTITION"
+fi
 
 if [ "$SWAP_PARTITION" != "" ]; then
     mkswap $SWAP_PARTITION
@@ -30,6 +43,12 @@ fi
 
 echo "Please enter the root partition name (e.g. /dev/sda3):"
 read ROOT_PARTITION
+
+if [ "$ROOT_PARTITION" = "" ]; then
+    ROOT_PARTITION="/dev/sda3"
+else if [[ $ROOT_PARTITION =~ ^[0-9]+$]]; then
+    ROOT_PARTITION="/dev/sda$ROOT_PARTITION"
+fi
 
 if [ "$ROOT_PARTITION" != "" ]; then
     echo "Formatting root partition..."
@@ -77,3 +96,5 @@ echo "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Please enter the chroot with 'arch-chroot /mnt' and execute the 'chroot.sh' script."
+
+arch-root /mnt /bin/bash -c "./chroot.sh"
