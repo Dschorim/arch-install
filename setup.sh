@@ -11,7 +11,7 @@ read EFI_PARTITION
 
 if [ "$EFI_PARTITION" = "" ]; then
     EFI_PARTITION="/dev/sda1"
-elif [[ $EFI_PARTITION =~ ^[0-9]+$]]; then
+elif [[ "$EFI_PARTITION" =~ "^[0-9]+$"]]; then
     EFI_PARTITION="/dev/sda$EFI_PARTITION"
 fi
 
@@ -30,7 +30,7 @@ read SWAP_PARTITION
 
 if [ "$SWAP_PARTITION" = "" ]; then
     SWAP_PARTITION="/dev/sda2"
-elif [[ $SWAP_PARTITION =~ ^[0-9]+$]]; then
+elif [[ "$SWAP_PARTITION" =~ "^[0-9]+$"]]; then
     SWAP_PARTITION="/dev/sda$SWAP_PARTITION"
 fi
 
@@ -46,7 +46,7 @@ read ROOT_PARTITION
 
 if [ "$ROOT_PARTITION" = "" ]; then
     ROOT_PARTITION="/dev/sda3"
-elif [[ $ROOT_PARTITION =~ ^[0-9]+$]]; then
+elif [[ "$ROOT_PARTITION" =~ "^[0-9]+$"]]; then
     ROOT_PARTITION="/dev/sda$ROOT_PARTITION"
 fi
 
