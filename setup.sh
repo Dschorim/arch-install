@@ -46,8 +46,8 @@ fi
 
 if [ "$ROOT_PARTITION" != "" ]; then
     echo "Formatting root partition..."
-    cryptsetup luksFormat "$ROOT_PARTITION"
-    cryptsetup open "$ROOT_PARTITION" cryptroot
+    cryptsetup luksFormat $ROOT_PARTITION
+    cryptsetup open $ROOT_PARTITION cryptroot
     mkfs.btrfs -f /dev/mapper/cryptroot
 else
     echo "No root partition specified. Exiting..."
