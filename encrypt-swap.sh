@@ -22,7 +22,7 @@ echo "y" | mkfs.ext2 -L cryptswap "$SWAP_PARTITION" 1M
 echo "swap    LABEL=cryptswap    /dev/urandom    swap.offset=2048,cipher=aes-xts-plain64,size=512" >> /etc/crypttab
 
 SWAP_LINE=$(cat /etc/fstab | grep swap)
-NEW_SWAP_LINE="/dev/mapper/swap    none    swap    defaults    0 0"
+NEW_SWAP_LINE="\/dev\/mapper\/swap    none    swap    defaults    0 0"
 
 sed -i "s/$SWAP_LINE/$NEW_SWAP_LINE/" /etc/fstab
 
