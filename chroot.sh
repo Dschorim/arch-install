@@ -44,4 +44,3 @@ passwd "$username"
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 systemctl enable NetworkManager
-# 042293ab-2976-48a9-95a1-e47bcca238a4
