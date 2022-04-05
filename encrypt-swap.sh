@@ -15,13 +15,6 @@ elif [[ $SWAP_PARTITION =~ $re ]]; then
     SWAP_PARTITION="/dev/sda$SWAP_PARTITION"
 fi
 
-if [ "$SWAP_PARTITION" != "" ]; then
-    mkswap "$SWAP_PARTITION"
-    swapon "$SWAP_PARTITION"
-else 
-    echo "Skipping swap encryption..."
-fi
-
 swapoff "$SWAP_PARTITION"
 
 echo "y" | mkfs.ext2 -L cryptswap "$SWAP_PARTITION" 1M
