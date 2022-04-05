@@ -29,16 +29,24 @@ fd
 exa
 
 # sway packages
-sway
-swayidle
-swaylock
+# sway
+# swayidle
+# swaylock
 
 #default applications of sway
-dmenu
+# dmenu
 
 # terminal emulator
-alacritty
-foot
+# alacritty
+# foot
 
 # x11 compatibility
-xorg-server-xwayland
+# xorg-server-xwayland
+
+# audio
+# alsa
+# pulseaudio
+
+# for vscode
+# gnome-keyring
+# libsecret

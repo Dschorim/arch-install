@@ -18,8 +18,13 @@ echo "::1 localhost" >> /etc/hosts
 pacman -S $(grep -v '^#' packages.txt)
 
 sed -i 's/Modules=()/Modules=(btrfs)/' /etc/mkinitcpio.conf
+sed -i 's/Hooks=(base udev autodetect modconf block filesystems keyboard fsck)/Hooks=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/' /etc/mkinitcpio.conf
 
 mkinitcpio -p linux
+
+UUID=$(lsblk $1 -no UUID)
+
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=$UUID:cryptroot root=/dev/mapper/cryptroot"' /etc/default/grub
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id = Arch
 

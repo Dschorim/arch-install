@@ -46,14 +46,16 @@ fi
 
 if [ "$ROOT_PARTITION" != "" ]; then
     echo "Formatting root partition..."
-    mkfs.btrfs -f $ROOT_PARTITION
+    cryptsetup luksFormat "$ROOT_PARTITION"
+    cryptsetup open "$ROOT_PARTITION" cryptroot
+    mkfs.btrfs -f /dev/mapper/cryptroot
 else
     echo "No root partition specified. Exiting..."
     exit 1
 fi
 
 echo "Creating btrfs subvolumes..."
-mount $ROOT_PARTITION /mnt
+mount /dev/mapper/cryptroot /mnt
 btrfs su cr /mnt/@
 btrfs su cr /mnt/@home
 btrfs su cr /mnt/@var
@@ -63,14 +65,14 @@ btrfs su cr /mnt/@.snapshots
 umount /mnt
 
 echo "Mounting subvolumes..."
-mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@ $ROOT_PARTITION /mnt
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper/cryptroot /mnt
 mkdir /mnt/{boot,home,var,opt,tmp,.snapshots}
-mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@home $ROOT_PARTITION /mnt/home
-mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@opt $ROOT_PARTITION /mnt/opt
-mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@tmp $ROOT_PARTITION /mnt/tmp
-mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@.snapshots $ROOT_PARTITION /mnt/.snapshots
-mount -o subvol=@var $ROOT_PARTITION /mnt/var
-mount $EFI_PARTITION /mnt/boot
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/mapper/cryptroot /mnt/home
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/mapper/cryptroot /mnt/opt
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@tmp /dev/mapper/cryptroot /mnt/tmp
+mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@.snapshots /dev/mapper/cryptroot /mnt/.snapshots
+mount -o subvol=@var /dev/mapper/cryptroot /mnt/var
+mount /dev/mapper/cryptroot /mnt/boot
 
 read -r -p "Which CPU are you using? (intel/AMD/VM) " CPU_TYPE
 echo "Installing base system..."
@@ -90,4 +92,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Please enter the chroot with 'arch-chroot /mnt' and execute the 'chroot.sh' script."
 
-arch-chroot /mnt /bin/bash -c "pacman -Sy git && git clone https://github.com/Dschorim/arch-install.git && cd arch-install && bash chroot.sh && exit"
+arch-chroot /mnt /bin/bash -c "pacman -Sy git && git clone https://github.com/Dschorim/arch-install.git && cd arch-install && bash chroot.sh $ROOT_PARTITION && exit"
+
+rm -rf /mnt/arch-install
