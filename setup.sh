@@ -72,7 +72,7 @@ mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@o
 mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@tmp /dev/mapper/cryptroot /mnt/tmp
 mount -o noatime,commit=120,compress=zstd,space_cache=v2,discard=async,subvol=@.snapshots /dev/mapper/cryptroot /mnt/.snapshots
 mount -o subvol=@var /dev/mapper/cryptroot /mnt/var
-mount /dev/mapper/cryptroot /mnt/boot
+mount $EFI_PARTITION /mnt/boot
 
 read -r -p "Which CPU are you using? (intel/AMD/VM) " CPU_TYPE
 echo "Installing base system..."
