@@ -23,6 +23,8 @@ echo "swap    LABEL=cryptswap    /dev/urandom    swap.offset=2048,cipher=aes-xts
 
 SWAP_UUID=$(blkid -s UUID -o value "$SWAP_PARTITION")
 
+echo $SWAP_UUID
+
 sed -i "s/UUID=$SWAP_UUID/\/dev\/mapper\/swap/" /etc/fstab
 
 mount -a
