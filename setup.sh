@@ -90,8 +90,6 @@ fi
 echo "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "Please enter the chroot with 'arch-chroot /mnt' and execute the 'chroot.sh' script."
-
 arch-chroot /mnt /bin/bash -c "pacman -Sy git && git clone https://github.com/Dschorim/arch-install.git && cd arch-install && bash chroot.sh $ROOT_PARTITION && exit"
 
 rm -rf /mnt/arch-install

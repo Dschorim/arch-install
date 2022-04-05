@@ -24,7 +24,7 @@ mkinitcpio -p linux
 
 UUID=$(lsblk $1 -no UUID | head -n 1)
 
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=$UUID:cryptroot root=\/dev\/mapper\/cryptroot"/' /etc/default/grub
+sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet\"/GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet cryptdevice=UUID=$UUID:cryptroot root=\/dev\/mapper\/cryptroot\"/" /etc/default/grub
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id = Arch
 
