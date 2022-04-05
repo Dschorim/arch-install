@@ -17,14 +17,14 @@ echo "::1 localhost" >> /etc/hosts
 
 pacman -S $(grep -v '^#' packages.txt)
 
-sed -i 's/Modules=()/Modules=(btrfs)/' /etc/mkinitcpio.conf
-sed -i 's/Hooks=(base udev autodetect modconf block filesystems keyboard fsck)/Hooks=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/' /etc/mkinitcpio.conf
+sed -i 's/MODULES=()/MODULES=(btrfs)/' /etc/mkinitcpio.conf
+sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/' /etc/mkinitcpio.conf
 
 mkinitcpio -p linux
 
-UUID=$(lsblk $1 -no UUID)
+UUID=$(lsblk $1 -no UUID | head -n 1)
 
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=$UUID:cryptroot root=/dev/mapper/cryptroot"' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=$UUID:cryptroot root=/dev/mapper/cryptroot"/' /etc/default/grub
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id = Arch
 
@@ -44,3 +44,4 @@ passwd "$username"
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 systemctl enable NetworkManager
+# 042293ab-2976-48a9-95a1-e47bcca238a4
