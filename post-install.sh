@@ -46,3 +46,11 @@ if [ "$INSTALL_ZSH" = "n" ]; then
 else
     bash ./install-zsh.sh
 fi
+
+read -r -p "Do you want to install nvidia drivers? (Y/n): " INSTALL_NVIDIA
+
+if [ "$INSTALL_NVIDIA" = "n" ]; then
+    echo "Skipping nvidia drivers installation..."
+else
+    bash ./install-nvidia.sh
+fi
