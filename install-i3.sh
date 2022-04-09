@@ -1,6 +1,6 @@
 #!/bin/bash
 
-paru -S --noconfirm i3 i3status-rust j4-dmenu-desktop dmenu i3lock alsa pulseaudio xorg-xinit ly ttf-dejavu xclip
+paru -S --noconfirm i3 i3status-rust j4-dmenu-desktop dmenu i3lock alsa pulseaudio xorg-xinit ly ttf-dejavu xclip pavucontrol
 
 mkdir -p ~/.config/i3
 cp ./dotfiles/i3.config ~/.config/i3/config

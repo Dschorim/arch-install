@@ -18,7 +18,7 @@ echo "::1 localhost" >> /etc/hosts
 pacman -S --noconfirm $(grep -v '^#' packages.txt)
 
 sed -i 's/MODULES=()/MODULES=(btrfs)/' /etc/mkinitcpio.conf
-sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev keyboard autodetect modconf block encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev keyboard autodetect numlock modconf block encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 
 mkinitcpio -p linux
 
