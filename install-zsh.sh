@@ -8,3 +8,8 @@ chsh -s /usr/bin/zsh
 
 cp ./dotfiles/zshrc ~/.zshrc
 echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+
+paru -S --noconfirm zsh-theme-powerlevel10k-git
+echo "source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
+
+source ~/.zshrc
