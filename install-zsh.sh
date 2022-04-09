@@ -18,3 +18,5 @@ sudo wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20N
 sudo wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -O "/usr/share/fonts/MesloLGS NF Bold Italic.ttf"
 
 fc-cache
+
+echo "Alacritty needs to be restarted to apply fonts"
