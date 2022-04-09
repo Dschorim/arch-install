@@ -1,3 +1,9 @@
+autoload -Uz compinit promptinit
+compinit
+promptinit
+
+ZSH_THEME="agnoster"
+
 plugins=(git tmux encode64 extract pip python sublime sudo urltools z)
 
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
