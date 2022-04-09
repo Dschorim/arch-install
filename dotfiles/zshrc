@@ -74,10 +74,6 @@ plugins=(git tmux encode64 extract pip python sublime sudo urltools z)
 
 source $ZSH/oh-my-zsh.sh
 
-autoload -Uz compinit promptinit
-compinit
-promptinit
-
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
 # See https://github.com/nix-community/home-manager/issues/177.
 HISTSIZE="10000"
