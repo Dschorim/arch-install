@@ -7,6 +7,9 @@ cd paru-bin
 makepkg -si
 cd ..
 
+paru -S mkinitcpio-numlock
+sudo mkinitcpio -P
+
 read -r -p "Do you want to encrypt your swap? (Y/n): " ENCRYPT_SWAP
 
 if [ "$ENCRYPT_SWAP" = "n" ]; then
