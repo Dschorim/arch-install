@@ -30,3 +30,7 @@ exa
 
 # terminal emulator
 alacritty
+
+# misc
+neofetch
+cowsay
