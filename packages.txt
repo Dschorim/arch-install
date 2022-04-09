@@ -28,25 +28,5 @@ fd
 # ls replacement
 exa
 
-# sway packages
-# sway
-# swayidle
-# swaylock
-
-#default applications of sway
-# dmenu
-
 # terminal emulator
-# alacritty
-# foot
-
-# x11 compatibility
-# xorg-server-xwayland
-
-# audio
-# alsa
-# pulseaudio
-
-# for vscode
-# gnome-keyring
-# libsecret
+alacritty
