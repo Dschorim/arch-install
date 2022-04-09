@@ -1,6 +1,6 @@
 #!/bin/bash
 
-paru -S i3 i3status-rust j4-dmenu-desktop i3lock alsa pulseaudio
+paru -S --noconfirm i3 i3status-rust j4-dmenu-desktop i3lock alsa pulseaudio
 
 mkdir -p ~/.config/i3
 cp ./dotfiles/i3.config ~/.config/i3/config

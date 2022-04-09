@@ -1,5 +1,5 @@
 #!/bin/bash
 
-paru -S tmux
+paru -S --noconfirm tmux
 
 cp ./dotfiles/tmux.conf ~/.tmux.conf

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-paru -S nvidia
+paru -S --noconfirm nvidia
 
 sudo sed -i 's/MODULES=(btrfs)/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 sudo mkinitcpio -P

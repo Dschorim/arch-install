@@ -1,3 +1,3 @@
 #!/bin/bash
 
-paru -S visual-studio-code-bin libsecret gnome-keyring
+paru -S --noconfirm visual-studio-code-bin libsecret gnome-keyring
