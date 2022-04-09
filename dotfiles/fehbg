@@ -1,0 +1,2 @@
+#!/bin/sh
+/nix/store/qk8ax9rlc7qay2786zcsg47v2afkvify-feh-3.7.2/bin/feh --no-fehbg --bg-scale '/home/s8jmbech/.background-image'

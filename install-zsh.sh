@@ -12,6 +12,8 @@ echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlight
 paru -S --noconfirm zsh-theme-powerlevel10k-git
 echo "source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
 
+echo "~/.fehbg" >> ~/.zshrc
+
 sudo wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -O "/usr/share/fonts/MesloLGS NF Regular.ttf"
 sudo wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -O "/usr/share/fonts/MesloLGS NF Bold.ttf"
 sudo wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -O "/usr/share/fonts/MesloLGS NF Italic.ttf"
