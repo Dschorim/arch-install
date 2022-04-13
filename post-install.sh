@@ -57,3 +57,11 @@ if [ "$INSTALL_NVIDIA" = "n" ]; then
 else
     bash ./install-nvidia.sh
 fi
+
+read -r -p "Do you want to install amd drivers? (y/N): " INSTALL_AMD
+
+if [ "$INSTALL_AMD" = "y" ]; then
+    bash ./install-amdgpu.sh
+else
+    echo "Skipping amd drivers installation..."
+fi
